@@ -1,0 +1,19 @@
+{
+  "name": "Page action by URL",
+  "version": "1.0",
+  "description": "Shows a page action for urls which have the letter 'g' in them.",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action" :
+  {
+    "default_icon" : "icon.png",
+    "default_title" : "dbtrack",
+    "default_popup": "popup.html"
+  },
+  "permissions" : [
+    "tabs"
+  ],
+  "manifest_version": 2
+}
