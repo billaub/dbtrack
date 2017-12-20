@@ -1,7 +1,7 @@
 {
-  "name": "Page action by URL",
+  "name": "dbtrack",
   "version": "1.0",
-  "description": "Shows a page action for urls which have the letter 'g' in them.",
+  "description": "Tired of forgetting songs you listened?",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -13,7 +13,8 @@
     "default_popup": "popup.html"
   },
   "permissions" : [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "manifest_version": 2
 }
