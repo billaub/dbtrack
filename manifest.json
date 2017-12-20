@@ -1,7 +1,7 @@
 {
   "name": "dbtrack",
   "version": "1.0",
-  "description": "Tired of forgetting songs you listened?",
+  "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -11,6 +11,9 @@
     "default_icon" : "icon.png",
     "default_title" : "dbtrack",
     "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icon.png"
   },
   "permissions" : [
     "tabs",
