@@ -1,6 +1,6 @@
 {
   "name": "dbtrack",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
   "background": {
     "scripts": ["background.js"],
