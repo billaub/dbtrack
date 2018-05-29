@@ -4,8 +4,8 @@
     "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
     "main": "src/js/main.js",
     "scripts": {
-        "build": "parcel build src/js/main.js -d src/build/ -o main.js",
-        "watch": "parcel watch src/js/main.js -d src/build/ -o main.js"
+        "build": "parcel build src/js/main.js src/gestion.html -d src/build/ -o main.js",
+        "watch": "parcel watch src/js/main.js src/gestion.html -d src/build/ -o main.js"
     },
     "author": "Louis Billaud - Nicolas Perrier",
     "dependencies": {

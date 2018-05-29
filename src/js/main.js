@@ -1,36 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import Button from './components/Button';
-
-class App extends React.Component {
-    render() {
-        return ( <
-            div >
-            Your App injected to DOM correctly!
-            <
-            Button / >
-            <
-            /div>
-        )
-    }
-}
-
-// Message Listener function
-chrome.runtime.onMessage.addListener((request, sender, response) => {
-    // If message is injectApp
-    if (request.injectApp) {
-        // Inject our app to DOM and send response
-        injectApp();
-        response({
-            startedExtension: true,
+document.addEventListener('DOMContentLoaded', function() {
+    var save_button = document.getElementById("save_track");
+    console.log(save_button);
+    save_button.addEventListener('click', function() {
+        var url = ''
+        chrome.tabs.getSelected(null, function(tab) {
+            url = tab.url;
+            insert = {
+                ['track_' + url]: url
+            }
+            chrome.storage.sync.set(insert, function() { console.log('done'); });
+            chrome.storage.sync.get(null, function(obj) {
+                console.log(obj);
+            });
         });
-    }
+    });
 });
 
-function injectApp() {
-    const newDiv = document.createElement("div");
-    newDiv.setAttribute("id", "chromeExtensionReactApp");
-    document.body.appendChild(newDiv);
-    ReactDOM.render( < App / > , newDiv);
-}
+document.addEventListener('DOMContentLoaded', function() {
+    var open_button = document.getElementById("open_tracks");
+    console.log(open_button);
+    open_button.addEventListener('click', function() {
+        chrome.tabs.create({ url: "src/gestion.html" });
+    });
+});
