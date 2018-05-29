@@ -1,5 +1,5 @@
 {
-    "name": "DbTrack",
+    "name": "DbTrack_develop",
     "version": "1.0",
     "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
     "background": {
@@ -8,7 +8,7 @@
     },
     "page_action": {
         "default_icon": "icon.png",
-        "default_title": "DbTrack",
+        "default_title": "DbTrack_develop",
         "default_popup": "src/popup.html"
     },
     "icons": {
@@ -21,6 +21,6 @@
     "manifest_version": 2,
     "content_scripts": [{
         "matches": ["http://*/*", "https://*/*"],
-        "js": ["src/build/main.js"]
+        "js": ["src/build/js/main.js"]
     }]
 }
