@@ -24,7 +24,7 @@ class Popup extends Component {
   }
 
   openTab() {
-
+    chrome.tabs.create({ url: "dashboard.html" });
   }
 
   render() {

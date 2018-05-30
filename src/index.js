@@ -5,5 +5,14 @@ import './css/style.css';
 import Popup from './components/Popup/Popup';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Popup />, document.getElementById('root'));
+const rootPopup = document.getElementById('root');
+const dashboardRoot = document.getElementById('root-dashboard');
+
+if (rootPopup) {
+    ReactDOM.render(<Popup />, rootPopup);
+}
+else {
+    ReactDOM.render(<Popup />, dashboardRoot);
+}
+
 registerServiceWorker();
