@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './Header.css';
+import SimpleLineIcon from 'react-simple-line-icons';
 
 class Header extends Component {
     render() {
         return (
             <header className="bg-white-only header header-md navbar navbar-fixed-top-xs">
-                <div className="navbar-header aside bg-info nav-xs">
+                <div className="navbar-header aside bg-info">
                     <a className="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
-                        <i className="icon-list"></i>
+                        <SimpleLineIcon name="list" size="Medium" />
                     </a>
                     <a href="index.html" className="navbar-brand text-lt">
-                        <i className="icon-earphones"></i>
-                        <img src="" alt="." className="hide" /> <span className="hidden-nav-xs m-l-sm">Musik</span>
+                        <SimpleLineIcon name="earphones" size="Medium" />
                     </a>
                     <a className="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
-                        <i className="icon-settings"></i>
+                        <SimpleLineIcon name="settings" size="Medium"/>
                     </a>
                 </div>
 
@@ -22,5 +22,5 @@ class Header extends Component {
         );
     }
 }
-    
+
 export default Header;
