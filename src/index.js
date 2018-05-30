@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './css/style.css';
 
 import Popup from './components/Popup/Popup';
+import Dashboard from './components/Dashboard/Dashboard';
 import registerServiceWorker from './registerServiceWorker';
 
 const rootPopup = document.getElementById('root');
@@ -12,7 +13,7 @@ if (rootPopup) {
     ReactDOM.render(<Popup />, rootPopup);
 }
 else {
-    ReactDOM.render(<Popup />, dashboardRoot);
+    ReactDOM.render(<Dashboard />, dashboardRoot);
 }
 
 registerServiceWorker();
