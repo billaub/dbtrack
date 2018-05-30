@@ -1,17 +1,16 @@
 {
-    "name": "dbtrack",
+    "name": "dbtrack_develop",
     "version": "0.1.0",
-    "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
-    "main": "src/js/main.js",
-    "scripts": {
-        "build": "parcel build src/js/main.js src/gestion.html -d src/build/ -o main.js",
-        "watch": "parcel watch src/js/main.js src/gestion.html -d src/build/ -o main.js"
-    },
-    "author": "Louis Billaud - Nicolas Perrier",
+    "private": true,
     "dependencies": {
-        "babel-preset-react-app": "^3.1.1",
-        "parcel-bundler": "^1.6.2",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0",
+        "react-scripts": "1.1.4"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
     }
 }
