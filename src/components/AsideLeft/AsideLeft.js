@@ -22,7 +22,7 @@ class AsideLeft extends Component {
                             </nav>
                         </div>
                     </section>
-                    <AsideFooter />
+                    {/* <AsideFooter /> */}
                 </section>
             </aside>
         );

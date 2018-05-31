@@ -10509,6 +10509,11 @@ button.close {
     content: "\e001";
 }
 
+.icon-download-grid {
+    float: right;
+    font-size: 1.6em;
+}
+
 html {
     background-color: #f2f4f8;
     overflow-x: hidden;
