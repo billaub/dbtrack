@@ -9,13 +9,34 @@ class Popup extends Component {
     this.saveUrl = this.saveUrl.bind(this);
     this.openTab = this.openTab.bind(this);
     this.sendPopup = this.sendPopup.bind(this);
+    this.checkUrl = this.checkUrl.bind(this);
   }
 
-  sendPopup(msg) {
-    console.log("toto");
+  componentDidMount() {
+      chrome.tabs.getSelected(null, function (tab) {
+          let url = tab.url;
+          if (!this.checkUrl(url)) {
+              //  TODO : Finish Me (Disable save button)
+          }
+      });
+  }
+
+  checkUrl(url) {
+      console.log("checking url: " + url);
+      let regex = [
+          ".*youtube.com/watch.*",
+          ".*beatport.com/.*",
+          ".*soundcloud.com/.*"
+      ];
+      let re = new RegExp(regex.join("|"), "gi");
+      console.log("url matches: " + re.test(url));
+      return re.test(url)
+  }
+
+  sendPopup(msg, icon) {
     chrome.notifications.create("track_saved", {
         title: "dbtrack",
-        iconUrl: "icon.png",
+        iconUrl: icon,
         type: "basic",
         message: msg,
     }, () => {
@@ -33,7 +54,7 @@ class Popup extends Component {
           console.log("Runtime error.");
         }
         else {
-          p.sendPopup("Url enregistrée");
+          p.sendPopup("Url enregistrée", "icon.png");
         }
       });
     });
