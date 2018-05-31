@@ -13,7 +13,7 @@ class Searchbar extends Component {
                                 <i className="fa fa-search"></i>
                             </button>
                         </span>
-                        <input type="text" className="form-control input-sm no-border rounded" placeholder="Chercher le titre d'une musique, d'un album ..." />
+                        <input type="text" className="form-control input-sm no-border rounded" placeholder="Chercher le titre d'une musique ..." />
                     </div>
                 </div>
             </form>
