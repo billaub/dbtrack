@@ -14,6 +14,7 @@ class Popup extends Component {
     this.openTab = this.openTab.bind(this);
     this.sendPopup = this.sendPopup.bind(this);
     this.checkUrl = this.checkUrl.bind(this);
+    this.getPlatform = this.getPlatform.bind(this);
   }
 
   componentWillMount() {
@@ -37,6 +38,19 @@ class Popup extends Component {
     return value;
   }
 
+  getPlatform(url) {
+      console.log("getting platforme from url: " + url);
+      let platforms = [
+          "youtube",
+          "beatport",
+          "soundcloud"
+      ];
+      for (let i = 0; i < platforms.length; ++i)
+          if (url.indexOf(platforms[i]) !== -1)
+              return platforms[i];
+      return "";
+  }
+
   sendPopup(msg, icon) {
     chrome.notifications.create("track_saved", {
       title: "dbtrack",
@@ -51,8 +65,13 @@ class Popup extends Component {
     let p = this;
     chrome.tabs.getSelected(null, function (tab) {
       let insert = {
-        ['track_' + tab.url]: tab.url
+        ['track_' + tab.url]: {
+            "url": tab.url,
+            "title": tab.title,
+            "platform": p.getPlatform(tab.url)
+        }
       };
+      console.log(insert);
       chrome.storage.sync.set(insert, () => {
         if (chrome.runtime.error) {
           console.log("Runtime error.");
