@@ -25,15 +25,15 @@ h1 {
 }
 
 .button-blue {
-    background-color: #3b3de5;
-}
-
-.button-red {
-    background-color: #f40a12;
+    background-color: #4cb6cb;
 }
 
 .button-green {
-    background-color: #4CAF50;
+    background-color: #23e080;
+}
+
+.button-grey {
+    background-color: grey;
 }
 
 .first {
