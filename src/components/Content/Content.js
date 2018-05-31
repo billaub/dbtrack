@@ -6,13 +6,7 @@ class Content extends Component {
     render() {
         return (
             <section id="content">
-                <section className="hbox stretch">
-                    <section>
-                        <section className="vbox">
-                            <GridLink />
-                        </section>
-                    </section>
-                </section>
+                <GridLink />                
             </section>
         );
     }

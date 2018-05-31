@@ -3,25 +3,31 @@ import LinkItem from './LinkItem';
 
 class GridLink extends Component {
 
+    constructor(props) {
+        super(props);
+        this.fetchSavedUrls = this.fetchSavedUrls.bind(this);
+    }
+
+    fetchSavedUrls() {
+
+    }
+
+    componentWillMount() {
+        this.fetchSavedUrls();
+    }
+
     render() {
         return (
-            <section className="scrollable padder-lg w-f-md">
-                <a className="pull-right text-muted m-t-lg" data-toggle="class:fa-spin">
-                    <i className="icon-refresh i-lg inline" />
-                </a>
-                <h2 className="font-thin m-b">Ma liste</h2>
-                <div className="row row-sm">
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                    <LinkItem />
-                </div>
+            <section className="vbox">
+                <section className="scrollable padder-lg">
+                    <h2 className="font-thin m-b">Ma Liste</h2>
+                    <div className="row row-sm">
+                        <LinkItem />
+                        <LinkItem />
+                        <LinkItem />
+                        <LinkItem />
+                    </div>
+                </section>
             </section>
         );
     }
