@@ -4,10 +4,22 @@ class LinkItem extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            thumbnailUrl: ''
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.platform == 'youtube') {
+            this.setState({thumbnailUrl: 'http://img.youtube.com/vi/' + this.props.url.split('v=')[1] + '/0.jpg'});
+        } else if (this.props.platform == 'soundcloud') {
+            
+        } else if (this.props.platform == 'beatport') {
+            
+        }
     }
 
     render() {
-
         return (
             <div className="col-xs-6 col-sm-4 col-md-3">
                 <div className="item">
@@ -21,15 +33,15 @@ class LinkItem extends Component {
                             </div>
                         </div>
                         <a href="">
-                            <img src="https://d37tspgf48im77.cloudfront.net/CACHE/images/uploads/c8814b79dd2c84141513ef3da415e3c6d0e433356e983d424e228fcb5e5e8516/BF82B0AF-CBF3-4270-9344-CAC430EF6E37/e57d60f032d42aecb09f66da68b7e358.jpeg"
+                            <img src={this.state.thumbnailUrl}
                                 className="r r-2x img-full" widdth={400} height={200} />
                         </a>
                     </div>
                     <div className="padder-v">
-                        <a href="" className="text-ellipsis">Video name
+                        <a href="" className="text-ellipsis">{this.props.title}
                             <i className="icon-arrow-down-circle icon-download-grid" />
                         </a>
-                        <a href="" className="text-ellipsis text-ms text-muted">Video platform</a>
+                        <a href="" className="text-ellipsis text-ms text-muted">{this.props.platform}</a>
                     </div>
                 </div>
             </div>

@@ -7,22 +7,22 @@ class GridLink extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            data: []
+        };
         this.fetchSavedUrls = this.fetchSavedUrls.bind(this);
     }
 
     fetchSavedUrls() {
-        var tracks = [];
+        let p = this;
         chrome.storage.sync.get(null, (obj) => {
             var keys = Object.keys(obj);
-            var i = 0;
             keys.forEach((key) => {
                 chrome.storage.sync.get(key, (obj) => {
-                    var track = Object.values(obj)[0];
-                    tracks[i++] = track;
+                    p.setState({ data: p.state.data.concat(Object.values(obj)[0]) });
                 });
             });
         });
-        console.log(tracks);
     }
 
     componentWillMount() {
@@ -30,16 +30,19 @@ class GridLink extends Component {
     }
 
     render() {
+        const { data } = this.state;
+        const listItems = data.map((item) => {
+            return (
+                <LinkItem platform={item.platform} title={item.title} url={item.url} />
+            );
+        })
         return (
             <section className="vbox">
                 <section className="scrollable padder-lg">
                     <a href="" className="btn btn-s-md btn-dark btn-rounded pull-right button-clear">Tout supprimer</a>
                     <h2 className="font-thin m-b">Ma Liste</h2>
                     <div className="row row-sm">
-                        <LinkItem />
-                        <LinkItem />
-                        <LinkItem />
-                        <LinkItem />
+                        {listItems}
                     </div>
                 </section>
             </section>
