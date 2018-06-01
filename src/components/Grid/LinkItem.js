@@ -9,13 +9,14 @@ class LinkItem extends Component {
             thumbnailUrl: ''
         }
         this.copyUrlToClipboard = this.copyUrlToClipboard.bind(this);
+        this.deletLinkItem = this.deletLinkItem.bind(this);
     }
 
     componentDidMount() {
         if (this.props.platform == 'youtube') {
-            this.setState({thumbnailUrl: 'http://img.youtube.com/vi/' + this.props.url.split('v=')[1] + '/0.jpg'});
+            this.setState({ thumbnailUrl: 'http://img.youtube.com/vi/' + this.props.url.split('v=')[1] + '/0.jpg' });
         } else if (this.props.platform == 'soundcloud') {
-            
+
         } else if (this.props.platform == 'beatport') {
 
         }
@@ -33,8 +34,12 @@ class LinkItem extends Component {
             iconUrl: "icon.png",
             type: "basic",
             message: "L'URL a bien été copié dans le presse-papier !",
-          }, () => {
-          });
+        }, () => {
+        });
+    }
+
+    deletLinkItem() {
+        
     }
 
     render() {
@@ -47,7 +52,7 @@ class LinkItem extends Component {
                                 <a href=""><i className="fa fa-play-circle i-2x" /> </a>
                             </div>
                             <div className="bottom padder m-b-sm">
-                                <a href="" clasName="pull-right"><i className="icon-trash" /></a>
+                                <a onClick={this.deletLinkItem} clasName="pull-right"><i className="icon-trash" /></a>
                             </div>
                         </div>
                         <a href="">

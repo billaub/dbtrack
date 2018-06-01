@@ -11,6 +11,7 @@ class GridLink extends Component {
             data: []
         };
         this.fetchSavedUrls = this.fetchSavedUrls.bind(this);
+        this.deleteAllItems = this.deleteAllItems.bind(this);
     }
 
     fetchSavedUrls() {
@@ -23,6 +24,11 @@ class GridLink extends Component {
                 });
             });
         });
+    }
+
+    deleteAllItems() {
+        chrome.storage.sync.clear();
+        this.setState({ data: [] });
     }
 
     componentWillMount() {
@@ -39,10 +45,19 @@ class GridLink extends Component {
         return (
             <section className="vbox">
                 <section className="scrollable padder-lg">
-                    <a href="" className="btn btn-s-md btn-dark btn-rounded pull-right button-clear">Tout supprimer</a>
+                    <a onClick={this.deleteAllItems} className="btn btn-s-md btn-dark btn-rounded pull-right button-clear">Tout supprimer</a>
                     <h2 className="font-thin m-b">Ma Liste</h2>
                     <div className="row row-sm">
-                        {listItems}
+                    {listItems.length > 0 ? listItems : (
+                        <div className="post-item">
+                            <div className="caption wrapper-lg">
+                                <h2 className="post-title">Il n'y a rien ici ...</h2>
+                                <div className="post-sum">
+                                    <p>Vous pouvez ajouter des liens grâce à DbTrack</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     </div>
                 </section>
             </section>
