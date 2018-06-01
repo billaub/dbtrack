@@ -26,7 +26,6 @@ class Popup extends Component {
   }
 
   checkUrl(url) {
-    console.log("checking url: " + url);
     let regex = [
       ".*youtube.com/watch.*",
       ".*beatport.com/.*",
@@ -34,7 +33,6 @@ class Popup extends Component {
     ];
     let re = new RegExp(regex.join("|"), "gi");
     let value = re.test(url);
-    console.log("url matches: " + value);
     return value;
   }
 
@@ -84,7 +82,6 @@ class Popup extends Component {
   }
 
   openTab() {
-    console.log("opening tab");
     chrome.tabs.create({ url: "dashboard.html" });
   }
 
