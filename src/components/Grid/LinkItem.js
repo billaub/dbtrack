@@ -9,17 +9,21 @@ class LinkItem extends Component {
             thumbnailUrl: ''
         }
         this.copyUrlToClipboard = this.copyUrlToClipboard.bind(this);
-        this.deletLinkItem = this.deletLinkItem.bind(this);
+        this.deleteLinkItem = this.deleteLinkItem.bind(this);
     }
 
     componentDidMount() {
-        if (this.props.platform == 'youtube') {
+        if (this.props.platform === 'youtube') {
             this.setState({ thumbnailUrl: 'http://img.youtube.com/vi/' + this.props.url.split('v=')[1] + '/0.jpg' });
-        } else if (this.props.platform == 'soundcloud') {
+        } else if (this.props.platform === 'soundcloud') {
 
-        } else if (this.props.platform == 'beatport') {
+        } else if (this.props.platform === 'beatport') {
 
         }
+    }
+
+    openIFrame() {
+
     }
 
     copyUrlToClipboard() {
@@ -38,8 +42,8 @@ class LinkItem extends Component {
         });
     }
 
-    deletLinkItem() {
-        
+    deleteLinkItem() {
+       this.props.deleteItem(this.props.url);
     }
 
     render() {
@@ -52,12 +56,12 @@ class LinkItem extends Component {
                                 <a href=""><i className="fa fa-play-circle i-2x" /> </a>
                             </div>
                             <div className="bottom padder m-b-sm">
-                                <a onClick={this.deletLinkItem} clasName="pull-right"><i className="icon-trash" /></a>
+                                <a onClick={this.deleteLinkItem} clasName="pull-right"><i className="icon-trash" /></a>
                             </div>
                         </div>
                         <a href="">
                             <img src={this.state.thumbnailUrl}
-                                className="r r-2x img-full" widdth={400} height={200} />
+                                className="r r-2x img-full" widdth={400} height={200} alt=""/>
                         </a>
                     </div>
                     <div className="padder-v">
