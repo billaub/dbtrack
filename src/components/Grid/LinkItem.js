@@ -1,3 +1,4 @@
+/* global chrome */
 import React, { Component } from 'react';
 
 class LinkItem extends Component {
@@ -7,6 +8,7 @@ class LinkItem extends Component {
         this.state = {
             thumbnailUrl: ''
         }
+        this.copyUrlToClipboard = this.copyUrlToClipboard.bind(this);
     }
 
     componentDidMount() {
@@ -15,8 +17,24 @@ class LinkItem extends Component {
         } else if (this.props.platform == 'soundcloud') {
             
         } else if (this.props.platform == 'beatport') {
-            
+
         }
+    }
+
+    copyUrlToClipboard() {
+        document.oncopy = (e) => {
+            e.clipboardData.setData("Text", this.props.url);
+            e.preventDefault();
+        }
+        document.execCommand("Copy");
+        document.oncopy = undefined;
+        chrome.notifications.create("track_copied", {
+            title: "dbtrack",
+            iconUrl: "icon.png",
+            type: "basic",
+            message: "L'URL a bien été copié dans le presse-papier !",
+          }, () => {
+          });
     }
 
     render() {
@@ -38,7 +56,7 @@ class LinkItem extends Component {
                         </a>
                     </div>
                     <div className="padder-v">
-                        <a href="" className="text-ellipsis">{this.props.title}
+                        <a onClick={this.copyUrlToClipboard} className="text-ellipsis">{this.props.title}
                             <i className="icon-arrow-down-circle icon-download-grid" />
                         </a>
                         <a href="" className="text-ellipsis text-ms text-muted">{this.props.platform}</a>
