@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AsideFooter from './AsideFooter';
+// import AsideFooter from './AsideFooter';
 
 class AsideLeft extends Component {
 
@@ -12,7 +12,7 @@ class AsideLeft extends Component {
                             <nav className="nav-primary hidden-xs">
                                 <ul className="nav text-sm">
                                     <li>
-                                        <a href="#">
+                                        <a href="">
                                             <i className="icon-playlist icon text-success-lter"></i>
                                             {/* <b className="badge bg-success dker pull-right">9</b> */}
                                             <span>Ma Liste</span>

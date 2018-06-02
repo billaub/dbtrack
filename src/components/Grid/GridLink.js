@@ -8,11 +8,26 @@ class GridLink extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            initialData: [],
+            data: [],
+            search: ''
         };
         this.fetchSavedUrls = this.fetchSavedUrls.bind(this);
+        this.filterUrls = this.filterUrls.bind(this);
         this.deleteAllItems = this.deleteAllItems.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+    }
+
+    componentWillMount() {
+        this.fetchSavedUrls();
+        this.setState({ search: this.props.search });
+    }
+
+    componentDidUpdate() {
+        if (this.props.search !== this.state.search) {
+            this.setState({ search: this.props.search });
+            this.filterUrls();
+        }
     }
 
     fetchSavedUrls() {
@@ -22,9 +37,20 @@ class GridLink extends Component {
             keys.forEach((key) => {
                 chrome.storage.sync.get(key, (obj) => {
                     p.setState({ data: p.state.data.concat(Object.values(obj)[0]) });
+                    p.setState({ initialData: p.state.initialData.concat(Object.values(obj)[0]) });
                 });
             });
         });
+    }
+
+    filterUrls() {
+        if (this.props.search.length > 1) {
+            var array = [...this.state.initialData];
+            this.setState({ data: array.filter((item, index) => item.title.toLowerCase().includes(this.props.search.toLowerCase())) });
+        } else {
+            var initialArray = [...this.state.initialData];
+            this.setState({ data: initialArray });
+        }
     }
 
     deleteItem(key) {
@@ -40,9 +66,7 @@ class GridLink extends Component {
         this.setState({ data: [] });
     }
 
-    componentWillMount() {
-        this.fetchSavedUrls();
-    }
+
 
     render() {
         const { data } = this.state;

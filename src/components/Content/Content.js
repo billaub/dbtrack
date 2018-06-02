@@ -6,7 +6,7 @@ class Content extends Component {
     render() {
         return (
             <section id="content">
-                <GridLink />                
+                <GridLink search={this.props.search}/>                
             </section>
         );
     }

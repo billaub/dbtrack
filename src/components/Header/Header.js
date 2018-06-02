@@ -3,6 +3,7 @@ import Searchbar from './Searchbar';
 import SimpleLineIcon from 'react-simple-line-icons';
 
 class Header extends Component {
+
     render() {
 
         let style = {
@@ -15,7 +16,7 @@ class Header extends Component {
                     <a className="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
                         <SimpleLineIcon name="list" size="Medium" />
                     </a>
-                    <a href="index.html" className="navbar-brand text-lt">
+                    <a href="dashboard.html" className="navbar-brand text-lt">
                         <SimpleLineIcon name="earphones" size="Medium" style={style} />
                         <span className="hidden-nav-xs m-l-sm">DbTrack</span>
                     </a>
@@ -30,7 +31,7 @@ class Header extends Component {
                     </a>
                     </li>
                 </ul>
-                <Searchbar />
+                <Searchbar handleSearch={this.props.handleSearch} />
             </header>
         );
     }

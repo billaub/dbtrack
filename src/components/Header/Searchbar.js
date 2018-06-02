@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-//import './Searchbar.css';
 
 class Searchbar extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputValue: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({ inputValue: e.target.value });
+        this.props.handleSearch(e.target.value);
+    }
 
     render() {
         return (
@@ -13,7 +25,11 @@ class Searchbar extends Component {
                                 <i className="fa fa-search"></i>
                             </button>
                         </span>
-                        <input type="text" className="form-control input-sm no-border rounded" placeholder="Chercher le titre d'une musique ..." />
+                        <input type="text"
+                            value={this.state.inputValue}
+                            onChange={this.handleChange}
+                            className="form-control input-sm no-border rounded" 
+                            placeholder="Chercher le titre d'une musique ..." />
                     </div>
                 </div>
             </form>
