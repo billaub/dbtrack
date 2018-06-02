@@ -1,6 +1,8 @@
 /* global chrome */
 import React, { Component } from 'react';
-import LinkItem from './LinkItem';
+import GridLinkItem from './GridLinkItem';
+import ListLinkItem from './ListLinkItem';
+import SimpleLineIcon from 'react-simple-line-icons';
 import './GridLink.css';
 
 class GridLink extends Component {
@@ -10,12 +12,14 @@ class GridLink extends Component {
         this.state = {
             initialData: [],
             data: [],
-            search: ''
+            search: '',
+            displayGrid: true
         };
         this.fetchSavedUrls = this.fetchSavedUrls.bind(this);
         this.filterUrls = this.filterUrls.bind(this);
         this.deleteAllItems = this.deleteAllItems.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
+        this.switchTypeOfDisplay = this.switchTypeOfDisplay.bind(this);
     }
 
     componentWillMount() {
@@ -66,31 +70,59 @@ class GridLink extends Component {
         this.setState({ data: [] });
     }
 
-
+    switchTypeOfDisplay(gridDisplay) {
+        this.setState({ displayGrid: gridDisplay });
+        console.log(this.state.displayGrid);
+    }
 
     render() {
-        const { data } = this.state;
-        const listItems = data.map((item) => {
+        const { data, displayGrid } = this.state;
+        const gridListItems = data.map((item) => {
             return (
-                <LinkItem key={item.url} platform={item.platform} title={item.title} url={item.url} deleteItem={this.deleteItem} />
+                <GridLinkItem key={item.url} platform={item.platform} title={item.title} url={item.url} deleteItem={this.deleteItem} />
             );
-        })
+        });
+
+        const listListItems = data.map((item) => {
+            return (
+                <ListLinkItem key={item.url} platform={item.platform} title={item.title} url={item.url} deleteItem={this.deleteItem} />
+            );
+        });
+
+        const listEmpty = (
+            <div className="post-item">
+                <div className="caption wrapper-lg">
+                    <h2 className="post-title">Il n'y a rien ici ...</h2>
+                    <div className="post-sum">
+                        <p>Vous pouvez ajouter des liens grâce à DbTrack</p>
+                    </div>
+                </div>
+            </div>
+        );
+
         return (
             <section className="vbox">
                 <section className="scrollable padder-lg">
-                    <a onClick={this.deleteAllItems} className="btn btn-s-md btn-dark btn-rounded pull-right button-clear">Tout supprimer</a>
+                    <button onClick={(e) => this.switchTypeOfDisplay(true, e)} className="btn btn-sm bg-white btn-icon rounded pull-right button-type-display">
+                        <SimpleLineIcon name="grid" size="Medium" />
+                    </button>
+                    <button onClick={(e) => this.switchTypeOfDisplay(false, e)} className="btn btn-sm bg-white btn-icon rounded pull-right button-type-display">
+                        <SimpleLineIcon name="list" size="Medium" />
+                    </button>
+                    <button onClick={this.deleteAllItems} className="btn btn-s-md btn-dark btn-rounded pull-right button-clear">
+                        Tout supprimer
+                    </button>
                     <h2 className="font-thin m-b">Ma Liste</h2>
                     <div className="row row-sm">
-                        {listItems.length > 0 ? listItems : (
-                            <div className="post-item">
-                                <div className="caption wrapper-lg">
-                                    <h2 className="post-title">Il n'y a rien ici ...</h2>
-                                    <div className="post-sum">
-                                        <p>Vous pouvez ajouter des liens grâce à DbTrack</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                        {displayGrid ?
+                            gridListItems.length > 0 ? gridListItems : listEmpty
+                            : listListItems.length > 0 ?
+                                (
+                                    <ul className="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+                                        {listListItems}
+                                    </ul>
+                                ) : listEmpty
+                        }
                     </div>
                 </section>
             </section>

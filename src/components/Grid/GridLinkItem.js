@@ -1,7 +1,7 @@
 /* global chrome */
 import React, { Component } from 'react';
 
-class LinkItem extends Component {
+class GridLinkItem extends Component {
 
     constructor(props) {
         super(props);
@@ -10,6 +10,7 @@ class LinkItem extends Component {
         }
         this.copyUrlToClipboard = this.copyUrlToClipboard.bind(this);
         this.deleteLinkItem = this.deleteLinkItem.bind(this);
+        this.openIFrame = this.openIFrame.bind(this);
     }
 
     componentDidMount() {
@@ -43,7 +44,7 @@ class LinkItem extends Component {
     }
 
     deleteLinkItem() {
-       this.props.deleteItem(this.props.url);
+        this.props.deleteItem(this.props.url);
     }
 
     render() {
@@ -53,22 +54,19 @@ class LinkItem extends Component {
                     <div className="pos-rlt">
                         <div className="item-overlay opacity r r-2x bg-black">
                             <div className="center text-center m-t-n">
-                                <a href=""><i className="fa fa-play-circle i-2x" /> </a>
+                                <a onClick={this.openIFrame}><i className="fa fa-play-circle i-2x" /> </a>
                             </div>
                             <div className="bottom padder m-b-sm">
                                 <a onClick={this.deleteLinkItem} clasName="pull-right"><i className="icon-trash" /></a>
                             </div>
                         </div>
-                        <a href="">
-                            <img src={this.state.thumbnailUrl}
-                                className="r r-2x img-full" widdth={400} height={200} alt=""/>
-                        </a>
+                        <img src={this.state.thumbnailUrl} className="r r-2x img-full" widdth={400} height={200} alt="" />
                     </div>
                     <div className="padder-v">
                         <a onClick={this.copyUrlToClipboard} className="text-ellipsis">{this.props.title}
                             <i className="icon-arrow-down-circle icon-download-grid" />
                         </a>
-                        <a href="" className="text-ellipsis text-ms text-muted">{this.props.platform}</a>
+                        <span className="text-ellipsis text-ms text-muted">{this.props.platform}</span>
                     </div>
                 </div>
             </div>
@@ -76,4 +74,4 @@ class LinkItem extends Component {
     }
 }
 
-export default LinkItem;
+export default GridLinkItem;
