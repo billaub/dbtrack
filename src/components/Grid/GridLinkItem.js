@@ -56,17 +56,14 @@ class GridLinkItem extends Component {
                             <div className="center text-center m-t-n">
                                 <a onClick={this.openIFrame}><i className="fa fa-play-circle i-2x" /> </a>
                             </div>
-                            <div className="bottom padder m-b-sm">
-                                <a onClick={this.deleteLinkItem} clasName="pull-right"><i className="icon-trash" /></a>
-                            </div>
                         </div>
                         <img src={this.state.thumbnailUrl} className="r r-2x img-full" widdth={400} height={200} alt="" />
                     </div>
                     <div className="padder-v">
                         <span className="text-ellipsis">{this.props.title}</span>
-                        <a onClick={this.copyUrlToClipboard} className="text-ellipsis text-ms text-muted">
-                            {this.props.platform}
-                            <i className="icon-arrow-down-circle icon-download-grid" />
+                        <a className="text-ellipsis text-ms text-muted">    {this.props.platform}
+                            <i onClick={this.deleteLinkItem} className="icon-trash icon-delete-grid" />
+                            <i onClick={this.copyUrlToClipboard} className="icon-arrow-down-circle icon-download-grid" />                            
                         </a>
                     </div>
                 </div>

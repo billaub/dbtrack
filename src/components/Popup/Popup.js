@@ -28,7 +28,7 @@ class Popup extends Component {
   checkUrl(url) {
     let regex = [
       ".*youtube.com/watch.*",
-      ".*beatport.com/.*",
+      ".*beatport.com/track.*",
       ".*soundcloud.com/.*"
     ];
     let re = new RegExp(regex.join("|"), "gi");
