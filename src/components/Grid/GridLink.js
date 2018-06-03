@@ -72,7 +72,6 @@ class GridLink extends Component {
 
     switchTypeOfDisplay(gridDisplay) {
         this.setState({ displayGrid: gridDisplay });
-        console.log(this.state.displayGrid);
     }
 
     render() {

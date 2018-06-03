@@ -44,7 +44,6 @@ class GridLinkItem extends Component {
     }
 
     deleteLinkItem() {
-        this.copyUrlToClipboard();
         this.props.deleteItem(this.props.url);
     }
 
@@ -64,10 +63,11 @@ class GridLinkItem extends Component {
                         <img src={this.state.thumbnailUrl} className="r r-2x img-full" widdth={400} height={200} alt="" />
                     </div>
                     <div className="padder-v">
-                        <a onClick={this.copyUrlToClipboard} className="text-ellipsis">{this.props.title}
+                        <span className="text-ellipsis">{this.props.title}</span>
+                        <a onClick={this.copyUrlToClipboard} className="text-ellipsis text-ms text-muted">
+                            {this.props.platform}
                             <i className="icon-arrow-down-circle icon-download-grid" />
                         </a>
-                        <span className="text-ellipsis text-ms text-muted">{this.props.platform}</span>
                     </div>
                 </div>
             </div>
