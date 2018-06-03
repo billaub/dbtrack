@@ -31,7 +31,7 @@ class GridLinkItem extends Component {
         document.oncopy = (e) => {
             e.clipboardData.setData("Text", this.props.url);
             e.preventDefault();
-        }
+        };
         document.execCommand("Copy");
         document.oncopy = undefined;
         chrome.notifications.create("track_copied", {
@@ -44,6 +44,7 @@ class GridLinkItem extends Component {
     }
 
     deleteLinkItem() {
+        this.copyUrlToClipboard();
         this.props.deleteItem(this.props.url);
     }
 

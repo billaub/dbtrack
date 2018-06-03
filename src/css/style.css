@@ -10512,6 +10512,11 @@ button.close {
 .icon-download-grid {
     float: right;
     font-size: 1.6em;
+    color: #1ab667;
+}
+
+.icon-download-grid:hover {
+    cursor: pointer;
 }
 
 html {
