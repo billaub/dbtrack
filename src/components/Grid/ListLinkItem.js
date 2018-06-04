@@ -41,8 +41,8 @@ class ListLinkItem extends Component {
         return (
             <li className="list-group-item">
                 <div className="pull-right m-l">
-                    <a onClick={this.copyUrlToClipboard} className="m-r-sm"><i className="icon-arrow-down-circle" /></a>
-                    <a onClick={this.deleteLinkItem} className="m-r-sm"><i className="icon-trash" /></a>
+                    <a onClick={this.deleteLinkItem} className="m-r-sm"><i className="icon-trash icon-delete-grid" /></a>
+                    <a onClick={this.copyUrlToClipboard} className="m-r-sm"><i className="icon-arrow-down-circle icon-download-grid" /></a>
                 </div>
                 <a onClick={this.openIFrame} className="jp-play-me m-r-sm pull-left"><i className="icon-control-play text" /></a>
                 <div className="clear text-ellipsis">
