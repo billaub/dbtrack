@@ -17,14 +17,15 @@ class GridLinkItem extends Component {
         if (this.props.platform === 'youtube') {
             this.setState({ thumbnailUrl: 'http://img.youtube.com/vi/' + this.props.url.split('v=')[1] + '/0.jpg' });
         } else if (this.props.platform === 'soundcloud') {
+            this.setState({ thumbnailUrl: '/img/soundcloud.jpg' });
 
         } else if (this.props.platform === 'beatport') {
-
+            this.setState({ thumbnailUrl: '/img/beatport.png' });
         }
     }
 
     openIFrame() {
-
+        chrome.tabs.create({ url: this.props.url });
     }
 
     copyUrlToClipboard() {
@@ -63,7 +64,7 @@ class GridLinkItem extends Component {
                         <span className="text-ellipsis">{this.props.title}</span>
                         <a className="text-ellipsis text-ms text-muted">    {this.props.platform}
                             <i onClick={this.deleteLinkItem} className="icon-trash icon-delete-grid" />
-                            <i onClick={this.copyUrlToClipboard} className="icon-arrow-down-circle icon-download-grid" />                            
+                            <i onClick={this.copyUrlToClipboard} className="icon-arrow-down-circle icon-download-grid" />
                         </a>
                     </div>
                 </div>

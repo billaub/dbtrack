@@ -14,7 +14,7 @@ class ListLinkItem extends Component {
     }
 
     openIFrame() {
-
+        chrome.tabs.create({ url: this.props.url });
     }
 
     copyUrlToClipboard() {
