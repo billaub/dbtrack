@@ -9350,6 +9350,10 @@ button.close {
     content: "\f143"
 }
 
+.fa-play-circle:hover {
+    cursor: pointer
+}
+
 .fa-play-circle:before {
     content: "\f144"
 }
@@ -10311,6 +10315,10 @@ button.close {
 
 .icon-control-play:before {
     content: "\e071";
+}
+
+.icon-control-play:hover {
+    cursor: pointer;
 }
 
 .icon-control-pause:before {
