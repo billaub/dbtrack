@@ -15,5 +15,14 @@ readTextFile("asset-manifest.json", function(text) {
     document.getElementById("main").remove();
     var script = document.createElement("script");
     script.src = data["main.js"];
+
+    var head = document.head;
+    var link = document.createElement("link");
+
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = data["main.css"];
+
+    head.appendChild(link);
     document.getElementById("container").appendChild(script);
 });
