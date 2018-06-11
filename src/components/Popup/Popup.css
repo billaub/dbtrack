@@ -1,0 +1,46 @@
+body {
+    margin: 10px;
+    white-space: nowrap;
+}
+
+h1 {
+    font-size: 15px;
+}
+
+#container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-button {
+    width: 300px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button-blue {
+    background-color: #4cb6cb;
+}
+
+.button-green {
+    background-color: #23e080;
+}
+
+.button-grey {
+    background-color: grey;
+}
+
+.first {
+    position: relative;
+}
+
+.second {
+    position: relative;
+    margin-top: 10px
+}
