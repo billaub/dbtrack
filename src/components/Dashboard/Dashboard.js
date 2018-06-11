@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import AsideLeft from '../AsideLeft/AsideLeft';
 import Content from '../Content/Content';
+import ContentSubscriptions from '../Content/ContentSubscriptions';
 
 class Dashboard extends Component {
 
@@ -27,11 +28,11 @@ class Dashboard extends Component {
     render() {
 
         let display = (<div></div>);
-        if (this.state.displayContent == 0) { //Main grid with links
+        if (this.state.displayContent === 0) { //Main grid with links
             display = <Content search={this.state.search} />;
-        } else if (this.state.displayContent == 1) { //Subscribers
-
-        } else if (this.state.displayContent == 2) { //list users
+        } else if (this.state.displayContent === 1) { //Subscribers
+            display = <ContentSubscriptions />
+        } else if (this.state.displayContent === 2) { //list users
 
         }
 

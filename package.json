@@ -5,6 +5,7 @@
     "dependencies": {
         "react": "^16.4.0",
         "react-dom": "^16.4.0",
+        "react-modal": "^3.4.5",
         "react-scripts": "1.1.4",
         "react-simple-line-icons": "^1.0.8"
     },

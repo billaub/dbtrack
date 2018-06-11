@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import SimpleLineIcon from 'react-simple-line-icons';
+import RegisterButton from './RegisterButton';
 
 class Header extends Component {
 
@@ -32,6 +33,11 @@ class Header extends Component {
                     </li>
                 </ul>
                 <Searchbar handleSearch={this.props.handleSearch} />
+                <div className="navbar-right">
+                    <ul className="nav navbar-nav m-n hidden-xs nav-user user">
+                        <RegisterButton />
+                    </ul>
+                </div>
             </header>
         );
     }
