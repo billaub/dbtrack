@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-// import AsideFooter from './AsideFooter';
 
 class AsideLeft extends Component {
+
+    constructor(props) {
+        super(props);
+        this.updateDisplay = this.updateDisplay.bind(this);
+    }
+
+    updateDisplay(display){
+        this.props.handleDisplay(display);
+    }
 
     render() {
         return (
@@ -12,17 +20,27 @@ class AsideLeft extends Component {
                             <nav className="nav-primary hidden-xs">
                                 <ul className="nav text-sm">
                                     <li>
-                                        <a href="">
+                                        <a onClick={() => this.updateDisplay(0)}>
                                             <i className="icon-playlist icon text-success-lter"></i>
-                                            {/* <b className="badge bg-success dker pull-right">9</b> */}
                                             <span>Ma Liste</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a onClick={() => this.updateDisplay(1)}>
+                                            <i className="icon-drawer icon text-primary-lter"></i>
+                                            <span>Abonnements</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a onClick={() => this.updateDisplay(2)}>
+                                            <i className="icon-people icon text-info"></i>
+                                            <span>Utilisateurs</span>
                                         </a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
                     </section>
-                    {/* <AsideFooter /> */}
                 </section>
             </aside>
         );

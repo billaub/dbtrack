@@ -4603,7 +4603,7 @@ select[multiple].input-group-sm>.input-group-btn>.btn {
 
 @media (min-width: 768px) {
     .navbar-form .form-group {
-        display: inline-block;
+        display: block;
         margin-bottom: 0;
         vertical-align: middle;
     }
@@ -10733,7 +10733,7 @@ a:hover .caret-white {
 }
 
 .input-s-lg {
-    width: 250px;
+    width: 400px;
 }
 
 .input-lg {
