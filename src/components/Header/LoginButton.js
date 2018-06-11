@@ -12,7 +12,7 @@ const customStyleModal = {
     }
 };
 
-class RegisterButton extends Component {
+class LoginButton extends Component {
 
     constructor(props) {
         super(props);
@@ -20,8 +20,8 @@ class RegisterButton extends Component {
             modalIsOpen: false,
             pseudo: '',
             password: '',
-            registerSuccess: false,
-            registerFail: false
+            loginSuccess: false,
+            loginFail: false
         }
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -35,7 +35,8 @@ class RegisterButton extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        fetch('http://localhost:8000/auth/register/', {
+        console.log(this.state.password);
+        fetch('http://localhost:8000/auth/login/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,14 +46,17 @@ class RegisterButton extends Component {
         })
             .then(res => {
                 console.log(res.status);
-                if (res.status === 201) {
-                    this.setState({ registerSuccess: true });
-                    window.setTimeout(() => {
-                        window.location.href = "dashboard.html";
-                    }, 3000);
+                if (res.status === 200) {
+                    this.setState({ loginSuccess: true });
+                    res.json().then(json => {
+                        window.localStorage.setItem("token", json.token);
+                        window.localStorage.setItem("pseudo", json.pseudo);
+                        window.setTimeout(() => {
+                            window.location.href = "dashboard.html";
+                        }, 3000);
+                    })
                 } else {
-                    this.setState({ registerFail: true });
-
+                    this.setState({ loginFail: true });
                 }
             });
     }
@@ -68,23 +72,23 @@ class RegisterButton extends Component {
     render() {
 
         let alert = (<div></div>);
-        if (this.state.registerSuccess) {
+        if (this.state.loginSuccess) {
             alert = (
                 <div className="alert alert-success">
-                    Inscription réussie !
+                    Connexion réussie !
                 </div>
             );
-        } else if (this.state.registerFail) {
+        } else if (this.state.loginFail) {
             alert = (
                 <div className="alert alert-danger">
-                    L'inscription a échoué ! Ce pseudo est peut-être déjà utilisé ...
+                    La connexion a échoué ! Peut-être mauvais mot de passe ...
                 </div>
             );
         }
 
         return (
             <li>
-                <button onClick={this.openModal} className="btn btn-s-md btn-default btn-rounded button-register">Inscription</button>
+                <button onClick={this.openModal} className="btn btn-s-md btn-default btn-rounded button-register">Connexion</button>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.state.closeModal}
@@ -93,7 +97,7 @@ class RegisterButton extends Component {
                     <button onClick={this.closeModal} className="btn btn-sm bg-white btn-icon rounded pull-right">
                         <SimpleLineIcon name="close" size="Medium" />
                     </button>
-                    <h2>Inscription </h2>
+                    <h2>Connexion </h2>
                     {alert}
                     <form onSubmit={this.handleSubmit} className="form">
                         <div className="form-group">
@@ -122,4 +126,4 @@ class RegisterButton extends Component {
     }
 }
 
-export default RegisterButton;
+export default LoginButton;

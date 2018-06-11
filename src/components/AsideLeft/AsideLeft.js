@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AsideFooter from './AsideFooter';
 
 class AsideLeft extends Component {
 
@@ -7,7 +8,7 @@ class AsideLeft extends Component {
         this.updateDisplay = this.updateDisplay.bind(this);
     }
 
-    updateDisplay(display){
+    updateDisplay(display) {
         this.props.handleDisplay(display);
     }
 
@@ -41,10 +42,13 @@ class AsideLeft extends Component {
                             </nav>
                         </div>
                     </section>
+                    {window.localStorage.getItem("pseudo") !== null ?
+                        <AsideFooter />
+                        : (<div></div>) }
                 </section>
             </aside>
-        );
-    }
-}
-
+                );
+            }
+        }
+        
 export default AsideLeft;

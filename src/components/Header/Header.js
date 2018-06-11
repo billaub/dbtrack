@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import SimpleLineIcon from 'react-simple-line-icons';
 import RegisterButton from './RegisterButton';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 
 class Header extends Component {
 
@@ -10,6 +12,22 @@ class Header extends Component {
         let style = {
             display: 'inline-block'
         };
+
+        let contentNavbarRight;
+        if (window.localStorage.getItem("token") === null) {
+            contentNavbarRight = (
+                <ul className="nav navbar-nav m-n hidden-xs nav-user user">
+                    <RegisterButton />
+                    <LoginButton />
+                </ul>
+            );
+        } else {
+            contentNavbarRight = (
+                <ul className="nav navbar-nav m-n hidden-xs nav-user user">
+                    <LogoutButton />
+                </ul>
+            );
+        }
 
         return (
             <header className="bg-white-only header header-md navbar navbar-fixed-top-xs">
@@ -34,9 +52,7 @@ class Header extends Component {
                 </ul>
                 <Searchbar handleSearch={this.props.handleSearch} />
                 <div className="navbar-right">
-                    <ul className="nav navbar-nav m-n hidden-xs nav-user user">
-                        <RegisterButton />
-                    </ul>
+                    {contentNavbarRight}
                 </div>
             </header>
         );
