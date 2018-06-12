@@ -37,16 +37,16 @@ class Popup extends Component {
   }
 
   getPlatform(url) {
-      console.log("getting platforme from url: " + url);
-      let platforms = [
-          "youtube",
-          "beatport",
-          "soundcloud"
-      ];
-      for (let i = 0; i < platforms.length; ++i)
-          if (url.indexOf(platforms[i]) !== -1)
-              return platforms[i];
-      return "";
+    console.log("getting platforme from url: " + url);
+    let platforms = [
+      "youtube",
+      "beatport",
+      "soundcloud"
+    ];
+    for (let i = 0; i < platforms.length; ++i)
+      if (url.indexOf(platforms[i]) !== -1)
+        return platforms[i];
+    return "";
   }
 
   sendPopup(msg, icon) {
@@ -64,12 +64,27 @@ class Popup extends Component {
     chrome.tabs.getSelected(null, function (tab) {
       let insert = {
         ['track_' + tab.url]: {
-            "url": tab.url,
-            "title": tab.title,
-            "platform": p.getPlatform(tab.url)
+          "url": tab.url,
+          "title": tab.title,
+          "platform": p.getPlatform(tab.url)
         }
       };
-      console.log(insert);
+
+      if (window.localStorage.getItem("token") !== null) {
+        console.log("JWT " + window.localStorage.getItem("token"));
+        fetch("http://localhost:8000/tracks/", {
+          method: 'POST',
+          body: JSON.stringify({ title: tab.title, url: tab.url, platform: p.getPlatform(tab.url) }),
+          headers: {
+            "Authorization": "JWT " + window.localStorage.getItem("token"),
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+          }
+        }).then(res => {
+          console.log(res);
+        })
+      }
+
       chrome.storage.sync.set(insert, () => {
         if (chrome.runtime.error) {
           console.log("Runtime error.");

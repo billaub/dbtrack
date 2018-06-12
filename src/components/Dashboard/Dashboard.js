@@ -27,7 +27,7 @@ class Dashboard extends Component {
 
     render() {
 
-        let display = (<div></div>);
+        let display;
         if (this.state.displayContent === 0) { //Main grid with links
             display = <Content search={this.state.search} />;
         } else if (this.state.displayContent === 1) { //Subscribers
