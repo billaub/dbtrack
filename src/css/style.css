@@ -11314,13 +11314,14 @@ body.container {
         table-layout: fixed;
         border-spacing: 0;
         width: 100%;
+        height: 100%;
     }
     .hbox>aside,
     .hbox>section {
         display: table-cell;
         vertical-align: top;
-        height: 100%;
         float: none;
+        height: 100%;
     }
     .hbox>aside.show,
     .hbox>aside.hidden-sm,
@@ -11346,6 +11347,8 @@ body.container {
     }
     .vbox>header.header-md~section {
         top: 60px;
+        height: 100%;
+        display: -webkit-box;
     }
     .vbox>section.w-f {
         bottom: 50px;

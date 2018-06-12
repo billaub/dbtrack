@@ -20,8 +20,10 @@ class RegisterButton extends Component {
             modalIsOpen: false,
             pseudo: '',
             password: '',
+            passwordConfirmation: '',
             registerSuccess: false,
-            registerFail: false
+            registerFail: false,
+            passwordFail: false
         }
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -35,6 +37,14 @@ class RegisterButton extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
+        if (this.state.password !== this.state.passwordConfirmation) {
+            this.setState({passwordFail: true});
+        }
+        else {
+            this.setState({passwordFail: false});
+        }
+
         fetch('http://localhost:8000/auth/register/', {
             method: 'POST',
             headers: {
@@ -80,6 +90,12 @@ class RegisterButton extends Component {
                     L'inscription a échoué ! Ce pseudo est peut-être déjà utilisé ...
                 </div>
             );
+        } else if (this.state.passwordFail) {
+            alert = (
+                <div className="alert alert-danger">
+                    Les mots de passe ne correspondant pas !
+                </div>
+            );
         }
 
         return (
@@ -112,6 +128,15 @@ class RegisterButton extends Component {
                                 className="form-control"
                                 placeholder="Mot de passe ..."
                                 value={this.state.password}
+                                onChange={this.handleChange} />
+                        </div>
+                        <div className="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password"
+                                name="passwordConfirmation"
+                                className="form-control"
+                                placeholder="Confirmation du mot de passe ..."
+                                value={this.state.passwordConfirmation}
                                 onChange={this.handleChange} />
                         </div>
                         <button type="submit" className="btn btn-sm btn-default">Envoyer</button>
