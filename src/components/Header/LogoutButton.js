@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SimpleLineIcon from 'react-simple-line-icons';
 import './ActionButton.css';
 
 class LogoutButton extends Component {

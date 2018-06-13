@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import GridLink from '../Grid/GridLink';
+import GridLinkSubscription from '../Grid/GridLinkSubscription';
 
 class ContentSubscriptions extends Component {
 
     render() {
         return (
             <section id="content">
-                <GridLink />                
+                <GridLinkSubscription />                
             </section>
         );
     }

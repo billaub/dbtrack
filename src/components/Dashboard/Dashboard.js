@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import AsideLeft from '../AsideLeft/AsideLeft';
 import Content from '../Content/Content';
 import ContentSubscriptions from '../Content/ContentSubscriptions';
+import ContentListUsers from '../Content/ContentListUsers';
 
 class Dashboard extends Component {
 
@@ -33,7 +34,7 @@ class Dashboard extends Component {
         } else if (this.state.displayContent === 1) { //Subscribers
             display = <ContentSubscriptions />
         } else if (this.state.displayContent === 2) { //list users
-
+            display = <ContentListUsers />
         }
 
         return (
