@@ -35,7 +35,6 @@ class LoginButton extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state.password);
         fetch('http://localhost:8000/auth/login/', {
             method: 'POST',
             headers: {
@@ -45,7 +44,6 @@ class LoginButton extends Component {
             body: JSON.stringify({ username: this.state.pseudo, password: this.state.password })
         })
             .then(res => {
-                console.log(res.status);
                 if (res.status === 200) {
                     this.setState({ loginSuccess: true });
                     res.json().then(json => {

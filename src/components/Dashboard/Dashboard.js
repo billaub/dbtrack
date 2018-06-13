@@ -22,7 +22,6 @@ class Dashboard extends Component {
     }
 
     handleDisplay(display) {
-        console.log(display);
         this.setState({ displayContent: display });
     }
 

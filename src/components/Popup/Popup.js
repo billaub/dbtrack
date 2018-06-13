@@ -37,7 +37,6 @@ class Popup extends Component {
   }
 
   getPlatform(url) {
-    console.log("getting platforme from url: " + url);
     let platforms = [
       "youtube",
       "beatport",
@@ -71,18 +70,15 @@ class Popup extends Component {
       };
 
       if (window.localStorage.getItem("token") !== null) {
-        console.log("JWT " + window.localStorage.getItem("token"));
         fetch("http://localhost:8000/tracks/", {
           method: 'POST',
-          body: JSON.stringify({ title: tab.title, url: tab.url, platform: p.getPlatform(tab.url) }),
           headers: {
             "Authorization": "JWT " + window.localStorage.getItem("token"),
             "Content-Type": "application/json",
             'Accept': 'application/json',
-          }
-        }).then(res => {
-          console.log(res);
-        })
+          },
+          body: JSON.stringify({ title: tab.title, url: tab.url, platform: p.getPlatform(tab.url) })
+        });
       }
 
       chrome.storage.sync.set(insert, () => {
