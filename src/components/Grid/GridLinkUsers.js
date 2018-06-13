@@ -13,13 +13,16 @@ class GridLinkUsers extends Component {
     }
 
     componentWillMount() {
-        this.fetchAllUsers();
+        if (window.localStorage.getItem("token") !== null) {
+            this.fetchAllUsers();
+        }
     }
 
     fetchAllUsers() {
         fetch("http://localhost:8000/users/")
             .then(res => res.json())
             .then(json => {
+                json = json.filter((item) => item.username !== window.localStorage.getItem("pseudo"));
                 this.setState({ data: json });
             });
     }
@@ -43,16 +46,28 @@ class GridLinkUsers extends Component {
             </div>
         );
 
+        const notLogged = (
+            <div className="post-item">
+                <div className="caption wrapper-lg">
+                    <h2 className="post-title">Il n'y a rien ici ...</h2>
+                    <div className="post-sum">
+                        <p>Vous devez être connecté pour pouvoir vous abonnez à d'autres utilisateurs</p>
+                    </div>
+                </div>
+            </div>);
+
         return (
             <section className="vbox">
                 <section className="scrollable padder-lg">
                     <h2 className="font-thin m-b">Trouver des amis à suivre !</h2>
                     <div className="row row-sm">
-                    {listUsers.length > 0 ? (
-                        <ul className="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
-                            {listUsers}
-                        </ul>
-                    ) : listEmpty}
+                        {window.localStorage.getItem("token") !== null
+                            ? (
+                                listUsers.length > 0 ? (
+                                    <ul className="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+                                        {listUsers}
+                                    </ul>
+                                ) : listEmpty) : notLogged}
                     </div>
                 </section>
             </section>
