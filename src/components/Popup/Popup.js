@@ -50,7 +50,7 @@ class Popup extends Component {
 
   sendPopup(msg, icon) {
     chrome.notifications.create("track_saved", {
-      title: "dbtrack",
+      title: "DbTrack",
       iconUrl: icon,
       type: "basic",
       message: msg,

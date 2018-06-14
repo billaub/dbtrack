@@ -25,6 +25,21 @@ class GridLinkUsers extends Component {
                 json = json.filter((item) => item.username !== window.localStorage.getItem("pseudo"));
                 this.setState({ data: json });
             });
+        fetch("http://localhost:8000/subscriptions/", {
+            headers: {
+                "Authorization": "JWT " + window.localStorage.getItem("token")
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                var list = this.state.data;
+                list = list.filter((item1) => {
+                    return json.filter((item2) => {
+                        return item1.username === item2.username;
+                    }).length === 0;
+                });
+                this.setState({ data: list });
+            })
     }
 
 
@@ -32,7 +47,7 @@ class GridLinkUsers extends Component {
         const { data } = this.state;
         const listUsers = data.map((item) => {
             return (
-                <ListUserItem key={item.username} username={item.username} id={item.id} />
+                <ListUserItem key={item.username} username={item.username} id={item.id} refresh={this.fetchAllUsers} />
             );
         })
         const listEmpty = (
@@ -40,7 +55,7 @@ class GridLinkUsers extends Component {
                 <div className="caption wrapper-lg">
                     <h2 className="post-title">Il n'y a rien ici ...</h2>
                     <div className="post-sum">
-                        <p>Il y a aucun utilisateur d'inscrit à DbTrack :(</p>
+                        <p>Il y a aucun nouvel utilisateur à suivre</p>
                     </div>
                 </div>
             </div>

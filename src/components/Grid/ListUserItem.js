@@ -1,3 +1,4 @@
+/* global chrome */
 import React, { Component } from 'react';
 
 class ListUserItem extends Component {
@@ -8,7 +9,6 @@ class ListUserItem extends Component {
     }
 
     followUser() {
-        console.log("JWT " + window.localStorage.getItem("token"));
         fetch("http://localhost:8000/subscribe/", {
             body: JSON.stringify({ id: this.props.id }),
             headers: {
@@ -18,7 +18,17 @@ class ListUserItem extends Component {
             },
             method: "POST"
         })
-        .then(res => console.log(res));
+            .then(res => {
+                let p = this;
+                chrome.notifications.create("subscribe", {
+                    title: "DbTrack",
+                    iconUrl: "icon.png",
+                    type: "basic",
+                    message: "Vous vous êtes abonné à " + p.props.username,
+                }, () => {
+                });
+                this.props.refresh();
+            });
     }
 
     render() {
