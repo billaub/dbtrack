@@ -8,7 +8,7 @@ class Popup extends Component {
     super(props);
     this.state = {
       saveButtonActive: true
-    }
+    };
 
     this.saveUrl = this.saveUrl.bind(this);
     this.openTab = this.openTab.bind(this);
@@ -21,19 +21,18 @@ class Popup extends Component {
     let p = this;
     chrome.tabs.getSelected(null, function (tab) {
       let url = tab.url;
-      p.setState({ saveButtonActive: p.checkUrl(url) });
+      p.setState({ saveButtonActive: p.checkUrl(url, tab) });
     });
   }
 
-  checkUrl(url) {
+  checkUrl(url, tab) {
     let regex = [
       ".*youtube.com/watch.*",
       ".*beatport.com/track.*",
       ".*soundcloud.com/.*"
     ];
     let re = new RegExp(regex.join("|"), "gi");
-    let value = re.test(url);
-    return value;
+    return tab.audible || re.test(url);
   }
 
   getPlatform(url) {

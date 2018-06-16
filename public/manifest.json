@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "dbtrack_develop",
+    "name": "dbtrack",
     "description": "Ras le bol d'oublier tout le temps vos pépites musicales? Enregistrez les liens à la volée avec dbtrack",
-    "version": "1.0",
+    "version": "2.1",
     "browser_action": {
         "default_popup": "index.html",
         "default_title": "Open the popup"
