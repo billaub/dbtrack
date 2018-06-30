@@ -70,7 +70,7 @@ class Popup extends Component {
       };
 
       if (window.localStorage.getItem("token") !== null) {
-        fetch("http://localhost:8000/tracks/", {
+        fetch("http://46.105.96.65:8000/tracks/", {
           method: 'POST',
           headers: {
             "Authorization": "JWT " + window.localStorage.getItem("token"),

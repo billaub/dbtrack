@@ -9,7 +9,7 @@ class ListUserItem extends Component {
     }
 
     followUser() {
-        fetch("http://localhost:8000/subscribe/", {
+        fetch("http://46.105.96.65:8000/subscribe/", {
             body: JSON.stringify({ id: this.props.id }),
             headers: {
                 "Authorization": "JWT " + window.localStorage.getItem("token"),

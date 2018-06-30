@@ -19,13 +19,13 @@ class GridLinkUsers extends Component {
     }
 
     fetchAllUsers() {
-        fetch("http://localhost:8000/users/")
+        fetch("http://46.105.96.65:8000/users/")
             .then(res => res.json())
             .then(json => {
                 json = json.filter((item) => item.username !== window.localStorage.getItem("pseudo"));
                 this.setState({ data: json });
             });
-        fetch("http://localhost:8000/subscriptions/", {
+        fetch("http://46.105.96.65:8000/subscriptions/", {
             headers: {
                 "Authorization": "JWT " + window.localStorage.getItem("token")
             }

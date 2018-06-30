@@ -45,7 +45,7 @@ class RegisterButton extends Component {
             this.setState({passwordFail: false});
         }
 
-        fetch('http://localhost:8000/auth/register/', {
+        fetch('http://46.105.96.65:8000/auth/register/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

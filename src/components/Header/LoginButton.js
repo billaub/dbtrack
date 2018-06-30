@@ -35,7 +35,7 @@ class LoginButton extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        fetch('http://localhost:8000/auth/login/', {
+        fetch('http://46.105.96.65:8000/auth/login/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

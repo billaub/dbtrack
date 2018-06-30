@@ -45,7 +45,7 @@ class GridSubItem extends Component {
     }
 
     unfollowUser() {
-        fetch("http://localhost:8000/subscriptions/remove", {
+        fetch("http://46.105.96.65:8000/subscriptions/remove", {
             headers: {
                 "Authorization": "JWT " + window.localStorage.getItem("token"),
                 "Content-Type": "application/json",

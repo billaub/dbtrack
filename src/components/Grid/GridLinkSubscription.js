@@ -19,7 +19,7 @@ class GridLinkSubscription extends Component {
     }
 
     fetchTracksFromSub() {
-        fetch("http://localhost:8000/subscribe/tracks", {
+        fetch("http://46.105.96.65:8000/subscribe/tracks", {
             headers: {
                 "Authorization": "JWT " + window.localStorage.getItem("token")
             }
