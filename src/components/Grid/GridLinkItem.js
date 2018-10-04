@@ -58,7 +58,7 @@ class GridLinkItem extends Component {
                                 <a onClick={this.openIFrame}><i className="fa fa-play-circle i-2x" /> </a>
                             </div>
                         </div>
-                        <img src={this.state.thumbnailUrl} className="r r-2x img-full" widdth={400} height={200} alt="" />
+                        <img src={this.state.thumbnailUrl} className="r r-2x img-full" width={400} alt="" />
                     </div>
                     <div className="padder-v">
                         <span className="text-ellipsis">{this.props.title}</span>
